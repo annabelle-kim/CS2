@@ -1,1 +1,1 @@
-# CS2
+All projects created in CSII in sophomore year
