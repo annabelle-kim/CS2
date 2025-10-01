@@ -66,7 +66,8 @@ def consonant(word):
     '''
     consonant_count=0
     for character in word:
-        if character in ["q","w","r","t","y","p","s","d","f","g","h","j","k","l","z","x","c","v","b","n","m"]:
+        if character in ["q","w","r","t","y","p","s","d","f","g",
+                        "h","j","k","l","z","x","c","v","b","n","m"]:
             consonant_count += 1
     print (consonant_count)
 
@@ -109,22 +110,31 @@ def get_names(fullname):
 
     #Code will run through all of the letters in the given name. It will add every letter into a string, but if the code hits a space the code will add the letters up to this point in a list and will reset the "name" string into a blank string, and run through the code again.
 
-    for letter in fullname:
-        if letter == ' ':
-            names.append(name)
-            name = ''
-        else:
-            name += letter
-    names.append(name)
-    return names
+    '''
+    Desciption:
+        Splits the full name into first, middle(s), and last, and adds them all into one list
+    Args:
+        full_name (str): the full name that the user gives
+    Returns:
+        returns: list - the list of the full name split into their own strings
+    '''
 
-def first_name(name):
+    for letter in fullname:                                                                             #for loop that runs through all of the character in the full name       
+        if letter == ' ':                                                                               #if the character in sensed as a space
+            names.append(name)                                                                          #add the string "name" into the list "names"
+            name = ''                                                                                   #reset the string "name" to blank
+        else:                                                                                           #if the character is not space
+            name += letter                                                                              #add the character to the string "name"
+    names.append(name)                                                                                  #add the string "name" into the list "names"
+    return names                                                                                        #return the list "names"
+
+def first_name(name):                                                                                   
 
     '''
     Description:
         Finds the first name
     Args:
-        name (str): the full name that the user gives
+        name (str): the full name that the user gives                                                   
     Returns:
         returns: the first name
     '''
@@ -132,7 +142,7 @@ def first_name(name):
     names = get_names(name)
     return names[0]
 
-def middle_name(name):
+def middle_name(name):                                                                                  
 
     '''
     Description:
@@ -143,7 +153,7 @@ def middle_name(name):
         returns: the middle name(s)
     '''
 
-    names = get_names(name)
+    names = get_names(name)                                                                             
     return ' '.join(names[1:-1])
 
 def last_name(name):
@@ -157,7 +167,7 @@ def last_name(name):
         returns: the last name
     '''
 
-    names = get_names(name)
+    names = get_names(name)                                                                             
     return names[-1]
 
 
@@ -170,21 +180,21 @@ def lowercase(name):
     Description:
         Makes the full name lowercase
     Args:
-        name (str): the full name that the user gives
+        name (str): the full name that the user gives                                                   
     Returns:
         returns: the full name in all lowercase
     '''
 
-    name_out = " "
-    for letter in name:
-        if ord(letter)>64 and ord(letter)<91:
-            num = ord(letter)
-            num = num+32
-            letter = chr(num)
-            name_out = name_out + letter
-        else:
-            name_out = name_out + letter
-    return name_out
+    name_out = " "                                                                                      #the string "name_out" is equal to a blank string                                                                        #for every letter in the name                                                                                      
+    for letter in name:                                                                                 #the code will go through every letter in the given name
+        if ord(letter)>64 and ord(letter)<91:                                                           #if the ascii number of the letter is >64 and <91
+            num = ord(letter)                                                                           #the variable num = ascii number of the letter
+            num = num+32                                                                                #add 32 to that ascii number 
+            letter = chr(num)                                                                           #take this new number and turn it back into a character
+            name_out = name_out + letter                                                                #the new name string = that same string plus the new character
+        else:                                                                                           #if the ascii number of the letter is not >64 and <91
+            name_out = name_out + letter                                                                #add that letter to the string "name_out"
+    return name_out                                                                                     #return the end string of "name_out"
 
 def uppercase(name):
 
@@ -199,19 +209,30 @@ def uppercase(name):
 
     #ord returns the numeral value of an element from the use of the ascii table. The lowercase letters are in the range of 97-122. By subtracting each letter value by 32, it will turn the lowercase numeral values, into the uppercase numeral values. The numeral values will then be changed back into characters through the use of the function "char". The code will add the values all together to make the new name.
 
-    name_out = " "
-    for letter in name:
-        if ord(letter)>96 and ord(letter)<123:
-            num = ord(letter)
-            num = num-32
-            letter = chr(num)
-            name_out = name_out + letter
-        else:
-            name_out = name_out + letter
-    return name_out
+    name_out = " "                                                                                      #name_out is equal to a blank string
+    for letter in name:                                                                                 #code will run through all of the letters in the given name
+        if ord(letter)>96 and ord(letter)<123:                                                          #if the ascii number of the letter is >96 and <123
+            num = ord(letter)                                                                           #the variable num = the ascii number for the letter
+            num = num-32                                                                                #subtract the value 32 from num
+            letter = chr(num)                                                                           #turn the ascii number back into the new character
+            name_out = name_out + letter                                                                #add the new letter into the string "name_out"
+        else:                                                                                           #if the ascii number of the letter is not >96 and <123
+            name_out = name_out + letter                                                                #add the letter to the string "name_out"
+    return name_out                                                                                     #return the string "name_out"
 
-def title(word):
-    full = str.lower(word)
+def title(name):
+
+    '''
+    Description:
+        Returns a boolean if the name contains a title
+    Args:
+        name (str): the full name that the user gives
+    Returns:
+        returns: boolean - true or false
+    '''
+    #the code splits the name into the individual strings. For every string in the name, it checks to see if there is a title in the given list present. The code will return the boolean depending on the results.
+
+    full = str.lower(name)
     split_name = full.split(" ")
     for string in split_name:
         if string in ["dr.", "sir", "esq", "ph.d"]:
@@ -225,7 +246,7 @@ def gen_random(name):
     Description:
         Create a random name (mix up the letters)
     Args:
-        string (str): the name that the user gives
+        name (str): the name that the user gives
     Returns:
         prints: the new random name of mixed up letters
     '''
