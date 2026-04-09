@@ -1,3 +1,4 @@
+  
 def printboard(board):
     print(f"{board[0][0]} | {board[0][1]} | {board[0][2]}")
     print("----------")
@@ -28,44 +29,44 @@ def playerturn(board, player):
 def win(board, player):
     if board[0][0] == player and board[1][0] == player and board[2][0] == player:
         print (f"{player} wins")
-        quit()
+        return True
     elif board[0][0] ==player and board[0][1] == player and board[0][2] == player:
         print (f"{player} wins")
-        quit()
+        return True
     elif board[1][0] == player and board[1][1] == player and board[1][2] == player:
         print (f"{player} wins")
-        quit()
+        return True
     elif board[2][0] ==player and board[2][1]== player and board[2][2] == player:
         print (f"{player} wins")
-        quit()
+        return True
     elif board[0][1] == player and board[1][1] == player and board[2][1] == player:
         print (f"{player} wins")
-        quit()
+        return True
     elif board[0][2] == player and board[1][2] == player and board[2][2] == player:
         print (f"{player} wins")
-        quit()
+        return True
     elif board[0][0] == player and board[1][1] == player and board[2][2] == player:
         print (f"{player} wins")
-        quit()
+        return True
     elif board[2][0] == player and board[1][1] == player and board[0][2] == player:
         print (f"{player} wins")
-        quit()
+        return True
     else:
         return
 
 def tie(board):
     if board [0][0] != ' ' and board [1][0] != ' ' and board [2][0] != ' ' and board [0][1] != ' ' and board [1][1] != ' ' and board [2][1] != ' ' and board [0][2] != ' ' and board [1][2] != ' ' and board [2][2] != ' ':
         print ("It is a tie")
-        quit()
+        return True
     else:
         return
 
 
 def main():
-    board = [[' ', ' ', ' '],
-             [' ', ' ', ' '],
-             [' ', ' ', ' ']]
     while True:
+        board = [[' ', ' ', ' '],
+                [' ', ' ', ' '],
+                [' ', ' ', ' ']]
         player1 = input("Do you want to be X or O: ").upper()
 
         if player1 == "X":
@@ -76,15 +77,29 @@ def main():
             print("Ivalid response try again")
             continue
         printboard(board)
+
+
         
         while True:
             playerturn(board, player1)
             printboard(board)
-            tie(board)
-            win(board, player1)
+            if win(board, player1) == True:
+                break
+            if tie(board) == True:
+                break
             playerturn(board, player2)
             printboard(board)
-            tie(board)
-            win(board, player2)
+            if win(board, player2) == True:
+                break
+
+        play_again = input("Do you want to play again? ").lower()
+        if play_again == "yes":
+            main()
+        elif play_again == "no":
+            quit()
+        else:
+            print("Invalid Response")
+        
+
 
 main()
