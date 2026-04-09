@@ -1,10 +1,11 @@
   
 def printboard(board):
-    print(f"{board[0][0]} | {board[0][1]} | {board[0][2]}")
-    print("----------")
-    print(f"{board[1][0]} | {board[1][1]} | {board[1][2]}")
-    print("----------")
-    print(f"{board[2][0]} | {board[2][1]} | {board[2][2]}")
+    print("  1   2   3")
+    print(f"1 {board[0][0]} | {board[0][1]} | {board[0][2]}")
+    print(" -----------")
+    print(f"2 {board[1][0]} | {board[1][1]} | {board[1][2]}")
+    print(" -----------")
+    print(f"3 {board[2][0]} | {board[2][1]} | {board[2][2]}")
 
 def playerturn(board, player):
     while True:
@@ -53,6 +54,7 @@ def win(board, player):
         return True
     else:
         return
+        
 
 def tie(board):
     if board [0][0] != ' ' and board [1][0] != ' ' and board [2][0] != ' ' and board [0][1] != ' ' and board [1][1] != ' ' and board [2][1] != ' ' and board [0][2] != ' ' and board [1][2] != ' ' and board [2][2] != ' ':
