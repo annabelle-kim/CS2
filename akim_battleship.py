@@ -39,7 +39,7 @@ def place_dots(player, board):
     for i in range(4):
         print(f"You have {dots} boat(s) left to place")
         while True:
-            try:
+            try:                                                                    #test to see if the user's input is a valid and possible value within the gameboard's guidelines
                 column = int(input("Which column do you want to go in? ")) - 1
                 row = int(input("Which row do you want to go in? ")) - 1
 
