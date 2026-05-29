@@ -2,6 +2,15 @@ import os
 import time
 
 def printboard(board):
+    '''
+    print the gameboard and its values
+
+    Arguments:
+        board: which board the code is using 
+    
+    Returns:
+        print: prints what the current board looks like
+    '''
     print("  1   2   3   4   5")
     print(f"1 {board[0][0]} | {board[0][1]} | {board[0][2]} | {board[0][3]} | {board[0][4]}")
     print(" --------------------")
@@ -14,6 +23,16 @@ def printboard(board):
     print(f"5 {board[4][0]} | {board[4][1]} | {board[4][2]} | {board[4][3]} | {board[4][4]}")
 
 def place_dots(player, board):
+    '''
+    place the 4 boats onto the gameboard
+
+    Arguments:
+        player: the player who is placing thier ships
+        board: the board of the player who is placing their ships
+    
+    Returns:
+        print: prints the board with the bots after each one is placed
+    '''
     print(f"{player}'s board")
     printboard(board)
     dots=4
@@ -45,6 +64,18 @@ def place_dots(player, board):
 
 
 def player_turn(player, realboard, guessboard,score):
+    '''
+    general function where the player guesses where the boats of the other player are. There is also a check win code within this function.
+
+    Arguments:
+        player: which player is the one guessing
+        realboard: the board with the real location of the boats of the other player
+        guessboard: the board that records and has all of the guesses of the player
+        score: the counter for how many boats the player has sunken
+    
+    Returns:
+        print: prints what the current board looks like
+    '''
     print(f"{player}'s turn")
     while True:
         try:
@@ -66,8 +97,12 @@ def player_turn(player, realboard, guessboard,score):
             guessboard[row][column] = ('💥')
             score +=1
             printboard(guessboard)
-            print("Go again!")
+            if score == 4:
+                break
+            print("Go Again!")
             continue
+
+            
         else:
             guessboard[row][column] = ("❌")
             break
@@ -80,12 +115,6 @@ def player_turn(player, realboard, guessboard,score):
 
 
 
-'''def win(realboard):
-    for spot in realboard:
-        if spot == ("🛳️"):
-        '''
-
-
 
 def main():
     player1 = input("What is Player 1's name? ")
@@ -95,7 +124,7 @@ def main():
     while True:
         score1 = 0
         score2= 0
-        realboard1 = [[' ', ' ', ' ', ' ', ' '],
+        realboard1 = [[' ', ' ', ' ', ' ', ' '],      #the foundational layout for the empty game boards
                 [' ', ' ', ' ', ' ', ' '],
                 [' ', ' ', ' ', ' ', ' '],
                 [' ', ' ', ' ', ' ', ' '],
@@ -120,7 +149,6 @@ def main():
         while True:
             player1win,score1=player_turn(player1, realboard2, guessboard1, score1)
             if player1win:
-                print(f"{player1} wins!")
                 playagain= input("Do you want to play again? ").lower()
                 if playagain == "yes":
                     break
@@ -128,7 +156,6 @@ def main():
                     quit()
             player2win,score2=player_turn(player2, realboard1, guessboard2, score2)
             if player2win:
-                print(f"{player2} wins!")
                 playagain= input("Do you want to play again? ").lower()
                 if playagain == "yes":
                     break
